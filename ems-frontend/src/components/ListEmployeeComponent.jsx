@@ -1,26 +1,15 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+import { listEmployees } from './services/EmployeService';
 
 const ListEmployeeComponent = () => {
-    const dummyData = [
-        {
-            "id": 1,
-            "firstName": "Tingu",
-            "lastName": "Pingu",
-            "email": "ab@a.com"
-        },
-        {
-            "id": 2,
-            "firstName": "Jhingu",
-            "lastName": "Pingu",
-            "email": "asb@a.com"
-        },
-        {
-            "id": 3,
-            "firstName": "Kingu",
-            "lastName": "Pingu",
-            "email": "abs@a.com"
-        }
-    ]
+    const [employees,setEmployees] = useState([]);
+    useEffect(()=>{
+        listEmployees().then((response) => {
+            setEmployees(response.data)
+        }).catch(error => {
+            console.error(error)
+        })
+    },[])
   return (
     <div className='container'>
         <h2 className='text-center'>List of Employees</h2>
@@ -35,7 +24,7 @@ const ListEmployeeComponent = () => {
             </thead>
             <tbody>
                 {
-                    dummyData.map(employee =>
+                    employees.map(employee =>
                         <tr key={employee.id}>
                             <td>{employee.id}</td>
                             <td>{employee.firstName}</td>
