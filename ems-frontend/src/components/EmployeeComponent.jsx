@@ -9,6 +9,8 @@ const EmployeeComponent = () => {
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
 
+    const {id} = useParams();
+
     const [errors, setErrors] = useState({
         firstName: '',
         lastName: '',
@@ -61,12 +63,22 @@ const EmployeeComponent = () => {
         return valid;
     }
 
+    function pageTitle(){
+        if(id){
+            return <h2 className='text-center'>Update Employee</h2>
+        }else{
+            return <h2 className='text-center'>Add Employee</h2>
+        }
+    }
+
   return (
     <div className='container'>
         <br></br>
         <div className='row'>
             <div className='card col-md-6 offset-md-3 offset-md-3'>
-                <h2 className='text-center'>Add Employee</h2>
+                {
+                    pageTitle()
+                }
                 <div className='card-body'>
                     <form>
                         <div className='form-group mb-2'>
