@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-// import { createEmployee, getEmployee, updateEmployee } from '../services/EmployeeService';
+import { createEmployee } from './services/EmployeeService';
 import { useNavigate, useParams } from 'react-router-dom';
+// import { response } from 'express';
 
 const EmployeeComponent = () => {
 
@@ -8,13 +9,18 @@ const EmployeeComponent = () => {
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
 
-    // const navigator = useNavigate();
+    const navigator = useNavigate();
 
     function saveEmployee(e){
         e.preventDefault();
 
         const employee = {firstName, lastName, email}
-        console.log(employee)
+        console.log(employee);
+
+        createEmployee(employee).then((response) => {
+            console.log(response.data)
+        })
+        navigator('/employees')
     }
 
   return (

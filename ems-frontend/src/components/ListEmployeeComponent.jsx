@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react'
-import { listEmployees } from './services/EmployeService';
+import { listEmployees } from './services/EmployeeService';
 import { useNavigate } from 'react-router-dom';
 
 const ListEmployeeComponent = () => {
 
     const [employees,setEmployees] = useState([]);
-    
+
     const navigator = useNavigate();
     
     useEffect(()=>{
