@@ -95,6 +95,11 @@ const EmployeeComponent = () => {
         }
     }
 
+    function handleCancelUpdate(){
+        console.log('Going to employees page')
+        navigator('/employees')
+    }
+
   return (
     <div className='container'>
         <br></br>
@@ -148,6 +153,7 @@ const EmployeeComponent = () => {
                         </div>
 
                         <button className='btn btn-success' onClick={saveOrUpdateEmployee} >Submit</button>
+                        <button type="button" className="btn btn-danger ml-1" onClick={handleCancelUpdate}>Cancel</button>
                     </form>
 
                 </div>
