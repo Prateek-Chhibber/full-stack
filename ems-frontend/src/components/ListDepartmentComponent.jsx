@@ -1,19 +1,34 @@
 import React, { useEffect, useState } from "react";
 import {getAllDepartments} from './services/DepartmentService'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const ListDepartmentComponent = () => {
 
   const [departments, setDepartments] = useState([]);
 
+  const navigator = useNavigate();
+
   useEffect( () => {
     getAllDepartments().then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       setDepartments(response.data);
     }).catch(error => {
       console.log(error);
     })
   }, [])
+
+  function updateDepartment(id){
+    navigator(`/edit-department/${id}`)
+  }
+
+  function removeDepartment(id){
+    deleteDepartment(id).then((response) => {
+        console.log(response.data);
+        listOfDepartments();
+    }).catch(error => {
+        console.error(error);
+    })
+  }
 
   return (
     <div className="container">
@@ -36,13 +51,13 @@ const ListDepartmentComponent = () => {
               <td> {department.departmentDescription} </td>
               <td>
                 <button
-                //   onClick={() => updateDepartment(department.id)}
+                  onClick={(e) => updateDepartment(department.id)}
                   className="btn btn-info"
                 >
                   Update
                 </button>
                 <button
-                //   onClick={() => removeDepartment(department.id)}
+                  onClick={(e) => removeDepartment(department.id)}
                   className="btn btn-danger"
                   style={{ marginLeft: "10px" }}
                 >

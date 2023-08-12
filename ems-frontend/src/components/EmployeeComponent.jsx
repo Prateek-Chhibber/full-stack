@@ -96,7 +96,6 @@ const EmployeeComponent = () => {
     }
 
     function handleCancelUpdate(){
-        console.log('Going to employees page')
         navigator('/employees')
     }
 
