@@ -1,9 +1,65 @@
-import React from 'react'
+import React, { useState } from "react";
 
 const ListDepartmentComponent = () => {
-  return (
-    <div>ListDepartmentComponent</div>
-  )
-}
+  let dummyData = [
+    {
+      id: 1,
+      departmentName: "R&D",
+      departmentDescription: "Research and Development Department",
+    },
+    {
+      id: 2,
+      departmentName: "HR",
+      departmentDescription: "Human Resource Department",
+    },
+    {
+      id: 3,
+      departmentName: "IT",
+      departmentDescription: "Information Technology Department",
+    },
+  ];
 
-export default ListDepartmentComponent
+  const [departments, setDepartments] = useState(dummyData);
+
+  return (
+    <div className="container">
+      <h2 className="text-center">List of Departments</h2>
+      <table className="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>Department Id</th>
+            <th>Department Name</th>
+            <th>Department Description</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {departments.map((department) => (
+            <tr key={department.id}>
+              <td> {department.id} </td>
+              <td> {department.departmentName} </td>
+              <td> {department.departmentDescription} </td>
+              <td>
+                <button
+                //   onClick={() => updateDepartment(department.id)}
+                  className="btn btn-info"
+                >
+                  Update
+                </button>
+                <button
+                //   onClick={() => removeDepartment(department.id)}
+                  className="btn btn-danger"
+                  style={{ marginLeft: "10px" }}
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+export default ListDepartmentComponent;
