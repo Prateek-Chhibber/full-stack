@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
+import { createDepartment } from "./services/DepartmentService";
 
 const DepartmentComponent = () => {
   const [departmentName, setDepartmentName] = useState("");
@@ -11,8 +12,17 @@ const DepartmentComponent = () => {
 
   function saveDepartment(e){
     e.preventDefault();
+
     const department = {departmentName, departmentDescription};
+
     console.log(department);
+
+    createDepartment(department).then((response) => {
+        console.log(response.data);
+        navigator('/departments');
+    }).catch(error => {
+        console.log(error);
+    })
   }
 
   function pageTitle(){
