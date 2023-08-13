@@ -55,6 +55,10 @@ const DepartmentComponent = () => {
     }
   }
 
+  function handleCancelUpdate(){
+    navigator('/departments')
+}
+
   return(
     <div className='container'><br /><br />
       <div className='row'>
@@ -92,6 +96,7 @@ const DepartmentComponent = () => {
                           </input>
                       </div>
                       <button className='btn btn-success mb-2' onClick={(e) => saveOrUpdateDepartment(e)}>Submit</button>
+                      <button type="button" className="btn btn-danger ml-1" onClick={handleCancelUpdate}>Cancel</button>
                   </form>
 
               </div>
